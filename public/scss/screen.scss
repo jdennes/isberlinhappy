@@ -1,0 +1,57 @@
+@import "/reset.css";
+
+@font-face {
+  font-family: 'jdennes';
+  src: url('jdennes.eot');
+  src: url('jdennes.eot?#iefix') format('embedded-opentype'),
+    url('jdennes.woff') format('woff'),
+    url('jdennes.ttf') format('truetype'),
+    url('jdennes.svg#jdennes') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$main-bg-colour: #ffffff;
+$main-font-colour: #333333;
+$link-colour: #777777;
+$link-hover-colour: #999999;
+
+html, body {
+  font: {
+    family: 'Bitter', serif;
+    size: 20px;
+  }
+  background: $main-bg-colour;
+  color: $main-font-colour;
+  text-align: center;
+}
+
+a {
+  color: $link-colour;
+  text-decoration: none;
+  border-bottom: 1px solid $link-colour;
+  &:hover {
+    color: $link-hover-colour;
+    border-bottom: 1px solid $link-hover-colour;
+  }
+}
+
+#container {
+  margin: 0 auto;
+  width: 800px;
+}
+
+.question {
+  
+  margin: 30px 0 10px 0;
+  font-size: 42px;
+}
+
+h1.answer {
+  font-size: 400px;
+  font-weight: bold;
+}
+
+.details {
+  font-size: 30px;
+}
