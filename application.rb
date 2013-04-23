@@ -5,6 +5,7 @@ require 'sass'
 require 'httparty'
 
 configure do
+  require 'newrelic_rpm' if production?
   set :views, "#{File.dirname(__FILE__)}/views"
 end
 

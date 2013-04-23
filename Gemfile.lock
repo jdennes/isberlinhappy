@@ -11,6 +11,7 @@ GEM
       multi_xml (>= 0.5.2)
     multi_json (1.7.2)
     multi_xml (0.5.3)
+    newrelic_rpm (3.6.0.78)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -51,6 +52,7 @@ PLATFORMS
 DEPENDENCIES
   haml
   httparty
+  newrelic_rpm
   rake
   rspec
   sass
