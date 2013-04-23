@@ -32,21 +32,48 @@ def error_weather
 end
 
 def weather_makes_berlin_happy(temp, code)
-  # This decision will become smarter.
-  temp.to_i > 15
+  # Mapped from: http://developer.yahoo.com/weather/#codes
+  lightning_thunder   = [0,1,2,3,4,37,38,39,45,47] # lightning/thunder
+  sleet_drizzle_rain  = [5,6,7,8,9,10,11,12,18,40] # sleet/drizzle/rain
+  snow                = [13,14,15,16,41,42,43,46]  # snow
+  hail                = [17,35]                    # hail
+  haze_dust           = [19..22]                   # haze/dust
+  windy               = [23,24]                    # windy
+  cloudy              = [25,26,44]                 # cloudy
+  partly_cloudy_night = [27,29]                    # partly cloudy - night
+  partly_cloudy_day   = [28,30]                    # partly cloudy - day
+  clear_night         = [31,33]                    # clear - night
+  sunny               = [32,34,36]                 # sunny
+
+  nice_temp = temp >= 15
+  nice_conditions = (
+    !lightning_thunder.include?(code) and
+    !sleet_drizzle_rain.include?(code) and
+    !snow.include?(code) and
+    !hail.include?(code)
+  )
+
+  nice_temp and nice_conditions
+end
+
+def weather_details_string(happy, temp, code, text)
+  "&mdash; #{text} and #{temp}&deg;C in Berlin right now!"
+end
+
+def weather_hashed(happy, temp, code, text)
+  { :happy => (happy ? 'Yes!' : 'No!'),
+    :details => weather_details_string(happy, temp, code, text) }
 end
 
 def berlin_weather
   url = "http://query.yahooapis.com/v1/public/yql?q=select%20item.condition%20from%20weather.forecast%20where%20woeid%20%3D%20638242%20and%20u%20%3D%20'c'&format=json"
   begin
     response = HTTParty.get url
-
-    temp = response['query']['results']['channel']['item']['condition']['temp']
-    code = response['query']['results']['channel']['item']['condition']['code']
-    weather = {
-      :happy => (weather_makes_berlin_happy(temp, code) ? 'Yes!' : 'No!'),
-      :details => "&mdash; It's #{temp}&deg;C right now!"
-    }
+    temp = response['query']['results']['channel']['item']['condition']['temp'].to_i
+    code = response['query']['results']['channel']['item']['condition']['code'].to_i
+    text = response['query']['results']['channel']['item']['condition']['text']
+    happy = weather_makes_berlin_happy temp, code
+    weather = weather_hashed happy, temp, code, text
   rescue
     return error_weather
   end

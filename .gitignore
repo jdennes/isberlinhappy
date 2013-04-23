@@ -2,3 +2,4 @@
 .env
 public/.sass-cache
 .bundle/*
+coverage
