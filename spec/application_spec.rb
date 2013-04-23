@@ -12,12 +12,12 @@ describe 'isberlinhappy app' do
     result.should == {:happy => "??", :details => "Sorry, something's broken!"}
   end
 
-  it "should tell when the whether the weather makes Berlin happy" do
+  it "should tell when the weather makes Berlin happy" do
     result = weather_makes_berlin_happy 20, 0
     result.should be_true
   end
 
-  it "should tell when the whether the weather makes Berlin sad" do
+  it "should tell when the weather makes Berlin sad" do
     result = weather_makes_berlin_happy 12, 0
     result.should be_false
   end
