@@ -32,7 +32,11 @@ def error_weather
   {:happy => "??", :details => "Sorry, something's broken!"}
 end
 
-def weather_makes_berlin_happy(temp, code)
+def temp_nice?(temp)
+  temp >= 15
+end
+
+def conditions_nice?(code)
   # Mapped from: http://developer.yahoo.com/weather/#codes
   lightning_thunder   = [0,1,2,3,4,37,38,39,45,47] # lightning/thunder
   sleet_drizzle_rain  = [5,6,7,8,9,10,11,12,18,40] # sleet/drizzle/rain
@@ -46,24 +50,19 @@ def weather_makes_berlin_happy(temp, code)
   clear_night         = [31,33]                    # clear - night
   sunny               = [32,34,36]                 # sunny
 
-  nice_temp = temp >= 15
-  nice_conditions = (
-    !lightning_thunder.include?(code) and
+  (!lightning_thunder.include?(code) and
     !sleet_drizzle_rain.include?(code) and
     !snow.include?(code) and
-    !hail.include?(code)
-  )
-
-  nice_temp and nice_conditions
+    !hail.include?(code))
 end
 
-def weather_details_string(happy, temp, code, text)
-  "&mdash; #{text} and #{temp}&deg;C in Berlin right now!"
-end
-
-def weather_hashed(happy, temp, code, text)
-  { :happy => (happy ? 'Yes!' : 'No!'),
-    :details => weather_details_string(happy, temp, code, text) }
+def weather_hashed(temp, code, text)
+  nice_temp = temp_nice?(temp)
+  nice_conditions = conditions_nice?(code)
+  happy = (nice_temp and nice_conditions) ? 'Yes!' : 'No!'
+  join = !nice_temp ? "but only" : "and"
+  details = "&mdash; #{text} #{join} #{temp}&deg;C in Berlin right now!"
+  { :happy => happy, :details => details }
 end
 
 def berlin_weather
@@ -73,8 +72,7 @@ def berlin_weather
     temp = response['query']['results']['channel']['item']['condition']['temp'].to_i
     code = response['query']['results']['channel']['item']['condition']['code'].to_i
     text = response['query']['results']['channel']['item']['condition']['text']
-    happy = weather_makes_berlin_happy temp, code
-    weather = weather_hashed happy, temp, code, text
+    weather = weather_hashed(temp, code, text)
   rescue
     return error_weather
   end
