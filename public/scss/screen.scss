@@ -30,6 +30,7 @@ a {
   color: $link-colour;
   text-decoration: none;
   border-bottom: 1px solid $link-colour;
+  padding-bottom: 5px;
   &:hover {
     color: $link-hover-colour;
     border-bottom: 1px solid $link-hover-colour;
@@ -48,8 +49,10 @@ a {
 }
 
 h1.answer {
-  font-size: 400px;
+  font-size: 360px;
   font-weight: bold;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .details {
