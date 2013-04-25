@@ -18,6 +18,7 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     rake (10.0.4)
+    redis (3.0.4)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -54,6 +55,7 @@ DEPENDENCIES
   httparty
   newrelic_rpm
   rake
+  redis
   rspec
   sass
   simplecov

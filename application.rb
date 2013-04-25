@@ -2,6 +2,7 @@ require 'sinatra'
 require "sinatra/reloader" if development?
 require 'haml'
 require 'sass'
+require './lib/weatherloader'
 require './lib/decisionmaker'
 
 configure do

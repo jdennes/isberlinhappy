@@ -1,5 +1,3 @@
-require 'httparty'
-
 # Makes decisions about weather conditions.
 class DecisionMaker
   attr_reader :temp
@@ -55,14 +53,11 @@ class DecisionMaker
   # Gets a DecisionMaker object loaded with weather data, ready
   # to make decisions.
   def self.get_decision_maker
-    url = "http://query.yahooapis.com/v1/public/yql?q=select%20item.condition%20from%20weather.forecast%20where%20woeid%20%3D%20638242%20and%20u%20%3D%20'c'&format=json"
     begin
-      response = HTTParty.get url
-      temp = response['query']['results']['channel']['item']['condition']['temp'].to_i
-      code = response['query']['results']['channel']['item']['condition']['code'].to_i
-      text = response['query']['results']['channel']['item']['condition']['text']
-      dm = DecisionMaker.new temp, code, text
-    rescue
+      data = WeatherLoader.get_weather
+      dm = DecisionMaker.new(data['temp'], data['code'], data['text'])
+    rescue Exception => e
+      p "Error: #{e}"
       dm = DecisionMaker.new nil, nil, nil
     end
     dm
