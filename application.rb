@@ -6,8 +6,11 @@ require './lib/weatherloader'
 require './lib/decisionmaker'
 
 configure do
-  require 'newrelic_rpm' if production?
   set :views, "#{File.dirname(__FILE__)}/views"
+end
+
+configure :production do
+  require 'newrelic_rpm'
 end
 
 helpers do
