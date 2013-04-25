@@ -16,25 +16,44 @@ class DecisionMaker
     @temp >= 15
   end
 
+  # Weather codes mapped from: http://developer.yahoo.com/weather/#codes
+  def weather_codes
+    {
+      :lightning_thunder   => [0,1,2,3,4,37,38,39,45,47], # lightning/thunder
+      :sleet_drizzle_rain  => [5,6,7,8,9,10,11,12,18,40], # sleet/drizzle/rain
+      :snow                => [13,14,15,16,41,42,43,46],  # snow
+      :hail                => [17,35],                    # hail
+      :haze_dust           => [19..22],                   # haze/dust
+      :windy               => [23,24],                    # windy
+      :cloudy              => [25,26,44],                 # cloudy
+      :partly_cloudy_night => [27,29],                    # partly cloudy - night
+      :partly_cloudy_day   => [28,30],                    # partly cloudy - day
+      :clear_night         => [31,33],                    # clear - night
+      :sunny               => [32,34,36]                  # sunny
+    }
+  end
+
   # Decide whether the conditions represented by the condition code are nice.
   def conditions_nice?
-    # Mapped from: http://developer.yahoo.com/weather/#codes
-    lightning_thunder   = [0,1,2,3,4,37,38,39,45,47] # lightning/thunder
-    sleet_drizzle_rain  = [5,6,7,8,9,10,11,12,18,40] # sleet/drizzle/rain
-    snow                = [13,14,15,16,41,42,43,46]  # snow
-    hail                = [17,35]                    # hail
-    haze_dust           = [19..22]                   # haze/dust
-    windy               = [23,24]                    # windy
-    cloudy              = [25,26,44]                 # cloudy
-    partly_cloudy_night = [27,29]                    # partly cloudy - night
-    partly_cloudy_day   = [28,30]                    # partly cloudy - day
-    clear_night         = [31,33]                    # clear - night
-    sunny               = [32,34,36]                 # sunny
+    ( !weather_codes[:lightning_thunder].include?(@code) and
+      !weather_codes[:sleet_drizzle_rain].include?(@code) and
+      !weather_codes[:snow].include?(@code) and
+      !weather_codes[:hail].include?(@code) )
+  end
 
-    ( !lightning_thunder.include?(@code) and
-      !sleet_drizzle_rain.include?(@code) and
-      !snow.include?(@code) and
-      !hail.include?(@code) )
+  def weather_icon
+    return '&#xe01a;' if weather_codes[:lightning_thunder].include?(@code)
+    return '&#xe011;' if weather_codes[:sleet_drizzle_rain].include?(@code)
+    return '&#xe016;' if weather_codes[:snow].include?(@code)
+    return '&#xe017;' if weather_codes[:hail].include?(@code)
+    return '&#xe009;' if weather_codes[:haze_dust].include?(@code)
+    return '&#xe005;' if weather_codes[:windy].include?(@code)
+    return '&#xe018;' if weather_codes[:cloudy].include?(@code)
+    return '&#xe008;' if weather_codes[:partly_cloudy_night].include?(@code)
+    return '&#xe007;' if weather_codes[:partly_cloudy_day].include?(@code)
+    return '&#xe002;' if weather_codes[:clear_night].include?(@code)
+    return '&#xe000;' if weather_codes[:sunny].include?(@code)
+    ''
   end
 
   # Get a hash of the current weather conditions.
@@ -45,8 +64,14 @@ class DecisionMaker
     end
 
     happy = (temp_nice? and conditions_nice?) ? 'Yes!' : 'No!'
-    join = !temp_nice? ? "but only" : "and"
-    details = "&mdash; #{@text} #{join} #{@temp}&deg;C in Berlin right now!"
+    if (conditions_nice? and !temp_nice?)
+      join = "but only"
+    elsif (!conditions_nice? and !temp_nice?)
+      join = "and only"
+    else
+      join = "and"
+    end
+    details = "&mdash; #{@text} #{join} #{@temp}&deg;C in Berlin right now! &nbsp;<span class='icon'>#{weather_icon}</span>"
     { :happy => happy, :details => details }
   end
 

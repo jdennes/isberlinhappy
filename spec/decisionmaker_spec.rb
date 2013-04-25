@@ -38,7 +38,7 @@ describe DecisionMaker do
       it "gets a hash of weather conditions" do
         result = dm.weather_hashed
         expect(result[:happy]).to eq("Yes!")
-        expect(result[:details]).to eq("&mdash; Sunny and 20&deg;C in Berlin right now!")
+        expect(result[:details]).to eq("&mdash; Sunny and 20&deg;C in Berlin right now! &nbsp;<span class='icon'>&#xe000;</span>")
       end
     end
   end
@@ -62,7 +62,7 @@ describe DecisionMaker do
       it "gets a hash of weather conditions" do
         result = dm.weather_hashed
         expect(result[:happy]).to eq("Yes!")
-        expect(result[:details]).to eq("&mdash; Cloudy and 15&deg;C in Berlin right now!")
+        expect(result[:details]).to eq("&mdash; Cloudy and 15&deg;C in Berlin right now! &nbsp;<span class='icon'>&#xe018;</span>")
       end
     end
   end
@@ -86,12 +86,12 @@ describe DecisionMaker do
       it "gets a hash of weather conditions" do
         result = dm.weather_hashed
         expect(result[:happy]).to eq("No!")
-        expect(result[:details]).to eq("&mdash; Showers and 25&deg;C in Berlin right now!")
+        expect(result[:details]).to eq("&mdash; Showers and 25&deg;C in Berlin right now! &nbsp;<span class='icon'>&#xe011;</span>")
       end
     end
   end
 
-  context "when it's 5 degrees C and sunny" do
+  context "when it's -5 degrees C and sunny" do
     let(:dm) { DecisionMaker.new(-5, 32, 'Sunny') }
 
     describe '#temp_nice?' do
@@ -110,7 +110,31 @@ describe DecisionMaker do
       it "gets a hash of weather conditions" do
         result = dm.weather_hashed
         expect(result[:happy]).to eq("No!")
-        expect(result[:details]).to eq("&mdash; Sunny but only -5&deg;C in Berlin right now!")
+        expect(result[:details]).to eq("&mdash; Sunny but only -5&deg;C in Berlin right now! &nbsp;<span class='icon'>&#xe000;</span>")
+      end
+    end
+  end
+
+  context "when it's -2 degrees C and snowing" do
+    let(:dm) { DecisionMaker.new(-2, 16, 'Snow') }
+
+    describe '#temp_nice?' do
+      it 'tells that the temperature is not nice' do
+        expect(dm.temp_nice?).to be_false
+      end
+    end
+
+    describe '#conditions_nice?' do
+      it 'tells that the conditions are not nice' do
+        expect(dm.conditions_nice?).to be_false
+      end
+    end
+
+    describe '#weather_hashed' do
+      it "gets a hash of weather conditions" do
+        result = dm.weather_hashed
+        expect(result[:happy]).to eq("No!")
+        expect(result[:details]).to eq("&mdash; Snow and only -2&deg;C in Berlin right now! &nbsp;<span class='icon'>&#xe016;</span>")
       end
     end
   end
