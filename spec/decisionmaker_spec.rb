@@ -2,6 +2,23 @@ require 'spec_helper'
 
 describe DecisionMaker do
 
+  describe '.get_decision_maker' do
+    let (:weather) { {'temp' => 35, 'code' => 26, 'text' => 'Cloudy'} }
+    let(:wl) do
+      redis = FakeRedis::Redis.new
+      redis.set "current_weather", weather.to_json
+      WeatherLoader.new(redis)
+    end
+
+    it 'gets a DecisionMaker object ready to make decisions' do
+      result = DecisionMaker.get_decision_maker(wl)
+      expect(result).to be_a(DecisionMaker)
+      expect(result.temp).to eq(35)
+      expect(result.code).to eq(26)
+      expect(result.text).to eq('Cloudy')
+    end
+  end
+
   context "when it's 20 degrees C and sunny" do
     let(:dm) { DecisionMaker.new(20, 32, 'Sunny') }
 

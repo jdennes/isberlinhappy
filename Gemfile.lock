@@ -4,6 +4,8 @@ GEM
     backports (3.3.0)
     diff-lcs (1.2.4)
     eventmachine (1.0.3)
+    fakeredis (0.4.2)
+      redis (~> 3.0.0)
     haml (4.0.2)
       tilt
     httparty (0.11.0)
@@ -51,6 +53,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  fakeredis
   haml
   httparty
   newrelic_rpm

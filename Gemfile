@@ -9,7 +9,8 @@ gem 'newrelic_rpm'
 gem 'redis'
 
 group :development do
-  gem "sinatra-reloader"
+  gem 'sinatra-reloader'
   gem 'rspec'
   gem 'simplecov', :require => false
+  gem 'fakeredis'
 end

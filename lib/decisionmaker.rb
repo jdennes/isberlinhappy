@@ -52,9 +52,9 @@ class DecisionMaker
 
   # Gets a DecisionMaker object loaded with weather data, ready
   # to make decisions.
-  def self.get_decision_maker
+  def self.get_decision_maker(weather_loader)
     begin
-      data = WeatherLoader.get_weather
+      data = weather_loader.get_weather
       dm = DecisionMaker.new(data['temp'], data['code'], data['text'])
     rescue Exception => e
       p "Error: #{e}"

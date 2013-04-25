@@ -30,7 +30,14 @@ end
 end
 
 get '/' do
-  @dm = DecisionMaker.get_decision_maker
+  redis_uri = URI.parse(ENV['REDISTOGO_URL'])
+  redis = Redis.new(
+    :host => redis_uri.host,
+    :port => redis_uri.port,
+    :password => redis_uri.password
+  )
+  wl = WeatherLoader.new redis
+  @dm = DecisionMaker.get_decision_maker wl
   @decision = @dm.weather_hashed
   haml :index
 end
