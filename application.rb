@@ -14,6 +14,10 @@ helpers do
   def versioned_stylesheet(style)
     "/#{style}.css?" + File.mtime(File.join(settings.public_folder, "scss", "#{style}.scss")).to_i.to_s
   end
+
+  def partial(name, locals={})
+    haml "_#{name}".to_sym, :layout => false, :locals => locals
+  end
 end
 
 before do
