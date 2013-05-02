@@ -13,4 +13,5 @@ group :development do
   gem 'rspec'
   gem 'simplecov', :require => false
   gem 'fakeredis'
+  gem 'webmock'
 end
