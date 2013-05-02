@@ -53,7 +53,7 @@ class DecisionMaker
     return '&#xe007;' if weather_codes[:partly_cloudy_day].include?(@code)
     return '&#xe002;' if weather_codes[:clear_night].include?(@code)
     return '&#xe000;' if weather_codes[:sunny].include?(@code)
-    ''
+    raise "Can't get weather icon when this DecisionMaker has no weather data to use."
   end
 
   # Get a hash of the current weather conditions.
