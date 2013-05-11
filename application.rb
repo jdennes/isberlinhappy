@@ -42,7 +42,11 @@ get '/' do
 
   if request.env['HTTP_ACCEPT'] == 'application/json'
     content_type 'application/json', :charset => 'utf-8'
-    return [200, {:happy => @decision[:happy], :details => @decision[:details]}.to_json]
+    return [200, {
+      :happy => @decision[:happy],
+      :text  => @decision[:text],
+      :temp  => @decision[:temp]
+    }.to_json]
   else
     content_type :html, :charset => 'utf-8'
     return haml :index

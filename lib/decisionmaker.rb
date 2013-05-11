@@ -74,7 +74,12 @@ class DecisionMaker
       join = "and"
     end
     details = "&mdash; #{@text} #{join} #{@temp}&deg;C in Berlin right now! &nbsp;<span class='icon'>#{weather_icon}</span>"
-    { :happy => happy, :details => details }
+    {
+      :happy   => happy,
+      :temp    => @temp,
+      :text    => @text,
+      :details => details
+    }
   end
 
   # Gets a DecisionMaker object loaded with weather data, ready

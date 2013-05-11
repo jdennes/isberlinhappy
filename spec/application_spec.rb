@@ -43,7 +43,7 @@ describe "The isberlinhappytoday Sinatra application" do
       get "/", {}, {'HTTP_ACCEPT' => 'application/json'}
       expect(last_response).to be_ok
       expect(last_response.headers['Content-Type']).to eq('application/json;charset=utf-8')
-      expect(last_response.body).to eq('{"happy":"Yes!","details":"&mdash; Mostly Cloudy and 20&deg;C in Berlin right now! &nbsp;<span class=\'icon\'>&#xe007;</span>"}')
+      expect(last_response.body).to eq('{"happy":"Yes!","text":"Mostly Cloudy","temp":20}')
     end
   end
 end
