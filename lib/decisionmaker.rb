@@ -35,24 +35,26 @@ class DecisionMaker
 
   # Decide whether the conditions represented by the condition code are nice.
   def conditions_nice?
-    ( !weather_codes[:lightning_thunder].include?(@code) and
-      !weather_codes[:sleet_drizzle_rain].include?(@code) and
-      !weather_codes[:snow].include?(@code) and
-      !weather_codes[:hail].include?(@code) )
+    wc = weather_codes
+    ( !wc[:lightning_thunder].include?(@code) and
+      !wc[:sleet_drizzle_rain].include?(@code) and
+      !wc[:snow].include?(@code) and
+      !wc[:hail].include?(@code) )
   end
 
   def weather_icon
-    return '&#xe01a;' if weather_codes[:lightning_thunder].include?(@code)
-    return '&#xe011;' if weather_codes[:sleet_drizzle_rain].include?(@code)
-    return '&#xe016;' if weather_codes[:snow].include?(@code)
-    return '&#xe017;' if weather_codes[:hail].include?(@code)
-    return '&#xe009;' if weather_codes[:haze_dust].include?(@code)
-    return '&#xe005;' if weather_codes[:windy].include?(@code)
-    return '&#xe018;' if weather_codes[:cloudy].include?(@code)
-    return '&#xe008;' if weather_codes[:partly_cloudy_night].include?(@code)
-    return '&#xe007;' if weather_codes[:partly_cloudy_day].include?(@code)
-    return '&#xe002;' if weather_codes[:clear_night].include?(@code)
-    return '&#xe000;' if weather_codes[:sunny].include?(@code)
+    wc = weather_codes
+    return '&#xe01a;' if wc[:lightning_thunder].include?(@code)
+    return '&#xe011;' if wc[:sleet_drizzle_rain].include?(@code)
+    return '&#xe016;' if wc[:snow].include?(@code)
+    return '&#xe017;' if wc[:hail].include?(@code)
+    return '&#xe009;' if wc[:haze_dust].include?(@code)
+    return '&#xe005;' if wc[:windy].include?(@code)
+    return '&#xe018;' if wc[:cloudy].include?(@code)
+    return '&#xe008;' if wc[:partly_cloudy_night].include?(@code)
+    return '&#xe007;' if wc[:partly_cloudy_day].include?(@code)
+    return '&#xe002;' if wc[:clear_night].include?(@code)
+    return '&#xe000;' if wc[:sunny].include?(@code)
     raise "Can't get weather icon when this DecisionMaker has no weather data to use."
   end
 
