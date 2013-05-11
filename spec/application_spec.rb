@@ -38,5 +38,14 @@ describe "The isberlinhappytoday Sinatra application" do
       expect(last_response.headers['Content-Type']).to eq('text/html;charset=utf-8')
       expect(last_response.body).to include("&mdash; Mostly Cloudy and 20&deg;C in Berlin right now! &nbsp;<span class='icon'>&#xe007;</span>")
     end
+
+    it "serves a JSON payload when the Accept header is set to application/json" do
+      get "/", {}, {'HTTP_ACCEPT' => 'application/json'}
+      expect(last_response).to be_ok
+      expect(last_response.headers['Content-Type']).to eq('application/json;charset=utf-8')
+      expect(last_response.body).to include('"happy":"Yes!"')
+      expect(last_response.body).to include('"text":"Mostly Cloudy"')
+      expect(last_response.body).to include('"temp":20')
+    end
   end
 end

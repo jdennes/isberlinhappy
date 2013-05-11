@@ -20,10 +20,6 @@ helpers do
   end
 end
 
-before do
-  content_type :html, :charset => 'utf-8'
-end
-
 %w(reset screen).each do |style|
   get "/#{style}.css" do
     content_type :css, :charset => 'utf-8'
@@ -43,5 +39,16 @@ get '/' do
   wl = WeatherLoader.new redis
   @dm = DecisionMaker.get_decision_maker wl
   @decision = @dm.weather_hashed
-  haml :index
+
+  if request.env['HTTP_ACCEPT'] == 'application/json'
+    content_type 'application/json', :charset => 'utf-8'
+    return [200, {
+      :happy => @decision[:happy],
+      :text  => @decision[:text],
+      :temp  => @decision[:temp]
+    }.to_json]
+  else
+    content_type :html, :charset => 'utf-8'
+    return haml :index
+  end
 end
