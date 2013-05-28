@@ -75,6 +75,36 @@ describe DecisionMaker do
     end
   end
 
+  context "when it's 10 degrees C and foggy" do
+    let(:dm) { DecisionMaker.new(10, 20, 'Foggy') }
+
+    describe '#temp_nice?' do
+      it 'tells that the temperature is nice' do
+        expect(dm.temp_nice?).to be_false
+      end
+    end
+
+    describe '#conditions_nice?' do
+      it 'tells that the conditions are nice' do
+        expect(dm.conditions_nice?).to be_true
+      end
+    end
+
+    describe '#weather_icon' do
+      it "gets an icon representing the weather conditions" do
+        expect(dm.weather_icon).to eq("&#xe009;")
+      end
+    end
+
+    describe '#weather_hashed' do
+      it "gets a hash of weather conditions" do
+        result = dm.weather_hashed
+        expect(result[:happy]).to eq("No!")
+        expect(result[:details]).to eq("&mdash; Foggy but only 10&deg;C in Berlin right now! &nbsp;<span class='icon'>&#xe009;</span>")
+      end
+    end
+  end
+
   context "when it's 15 degrees C and cloudy" do
     let(:dm) { DecisionMaker.new(15, 26, 'Cloudy') }
 

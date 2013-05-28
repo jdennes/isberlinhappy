@@ -23,7 +23,7 @@ class DecisionMaker
       :sleet_drizzle_rain  => [5,6,7,8,9,10,11,12,18,40], # sleet/drizzle/rain
       :snow                => [13,14,15,16,41,42,43,46],  # snow
       :hail                => [17,35],                    # hail
-      :haze_dust           => [19..22],                   # haze/dust
+      :haze_dust           => [19,20,21,22],              # haze/dust
       :windy               => [23,24],                    # windy
       :cloudy              => [25,26,44],                 # cloudy
       :partly_cloudy_night => [27,29],                    # partly cloudy - night
