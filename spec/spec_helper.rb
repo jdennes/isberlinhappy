@@ -13,6 +13,7 @@ $:.unshift File.expand_path('../lib', __FILE__)
 require './application'
 require 'decisionmaker'
 require 'weatherloader'
+require 'numeric'
 require 'rspec'
 require 'rack/test'
 require 'fakeredis/rspec'
