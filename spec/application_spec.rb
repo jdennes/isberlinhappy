@@ -45,7 +45,8 @@ describe "The isberlinhappytoday Sinatra application" do
       expect(last_response.headers['Content-Type']).to eq('application/json;charset=utf-8')
       expect(last_response.body).to include('"happy":"Yes!"')
       expect(last_response.body).to include('"text":"Mostly Cloudy"')
-      expect(last_response.body).to include('"temp":20')
+      expect(last_response.body).to include('"temp_c":20')
+      expect(last_response.body).to include('"temp_f":68')
     end
   end
 end

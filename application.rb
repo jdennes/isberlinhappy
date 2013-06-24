@@ -2,6 +2,7 @@ require 'sinatra'
 require "sinatra/reloader" if development?
 require 'haml'
 require 'sass'
+require './lib/numeric'
 require './lib/weatherloader'
 require './lib/decisionmaker'
 
@@ -43,9 +44,10 @@ get '/' do
   if request.env['HTTP_ACCEPT'] == 'application/json'
     content_type 'application/json', :charset => 'utf-8'
     return [200, {
-      :happy => @decision[:happy],
-      :text  => @decision[:text],
-      :temp  => @decision[:temp]
+      :happy  => @decision[:happy],
+      :text   => @decision[:text],
+      :temp_c => @decision[:temp],
+      :temp_f => @decision[:temp].celsius_to_fahrenheit
     }.to_json]
   else
     content_type :html, :charset => 'utf-8'
