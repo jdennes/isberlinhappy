@@ -9,7 +9,7 @@ describe Numeric do
 
     it 'converts a decimal representing fahrenheit to the equivalent decimal in celsius' do
       result = 85.35.fahrenheit_to_celsius
-      expect(result.round(2)).to eq(29.64)
+      expect((result * 100).round / 100.0).to eq(29.64)
     end
   end
 
@@ -21,7 +21,7 @@ describe Numeric do
 
     it 'converts a decimal representing celsius to the equivalent decimal in fahrenheit' do
       result = 29.64.celsius_to_fahrenheit
-      expect(result.round(2)).to eq(85.35)
+      expect((result * 100).round / 100.0).to eq(85.35)
     end
   end
 end
