@@ -10,9 +10,5 @@ Also, you can get the answer as JSON, by setting the `Accept` header value to `a
 
 ```sh
 $ curl -H "Accept: application/json" "http://www.isberlinhappytoday.com"
-{
-   "happy": "Yes!",
-   "text": "Mostly Cloudy",
-   "temp" :16
-}
+{"happy":"Yes!","text":"Fair","temp_c":23,"temp_f":73}
 ```
