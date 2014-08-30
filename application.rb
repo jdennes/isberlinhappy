@@ -21,7 +21,7 @@ helpers do
   end
 end
 
-%w(reset screen).each do |style|
+%w(screen).each do |style|
   get "/#{style}.css" do
     content_type :css, :charset => 'utf-8'
     path = "public/scss/#{style}.scss"
