@@ -14,6 +14,14 @@ $main-font-colour: #333333;
 $link-colour: #777777;
 $link-hover-colour: #999999;
 
+html, body {
+  font-family: "PT Serif", Georgia, "Times New Roman", serif;
+}
+
+h1, h2, h3 {
+  font-weight: bold;
+}
+
 .container {
   max-width: 768px; padding-top: 40px;
 }
