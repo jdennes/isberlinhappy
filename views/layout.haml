@@ -1,11 +1,14 @@
 !!!
 %html
   %head
+    %meta{:charset => 'utf-8'}
+    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}
     %title="Is Berlin happy today?"
     %link{:rel => 'icon', :type => 'image/x-icon', :href => '/favicon.ico'}
+    %link{:rel => 'stylesheet', :href => 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css'}
     %link{:href => versioned_stylesheet('screen'), :media => 'all', :rel => 'stylesheet', :type => 'text/css'}
     %link{:href => 'http://fonts.googleapis.com/css?family=Bitter', :rel => 'stylesheet', :type => 'text/css'}
     = partial :google_analytics
   %body
-    #container
+    .container{:class => 'text-center'}
       = yield

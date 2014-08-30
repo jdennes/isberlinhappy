@@ -1,5 +1,3 @@
-@import "/reset.css";
-
 @font-face {
   font-family: 'jdennes';
   src: url('jdennes.eot');
@@ -16,47 +14,8 @@ $main-font-colour: #333333;
 $link-colour: #777777;
 $link-hover-colour: #999999;
 
-html, body {
-  font: {
-    family: 'Bitter', serif;
-    size: 20px;
-  }
-  background: $main-bg-colour;
-  color: $main-font-colour;
-  text-align: center;
-}
-
-a {
-  color: $link-colour;
-  text-decoration: none;
-  border-bottom: 1px solid $link-colour;
-  padding-bottom: 5px;
-  &:hover {
-    color: $link-hover-colour;
-    border-bottom: 1px solid $link-hover-colour;
-  }
-}
-
-#container {
-  margin: 0 auto;
-  width: 800px;
-}
-
-.question {
-  
-  margin: 30px 0 10px 0;
-  font-size: 50px;
-}
-
-h1.answer {
-  font-size: 360px;
-  font-weight: bold;
-  margin-top: 40px;
-  margin-bottom: 20px;
-}
-
-.details {
-  font-size: 30px;
+.container {
+  max-width: 768px; padding-top: 40px;
 }
 
 .icon {
