@@ -21,13 +21,11 @@ helpers do
   end
 end
 
-%w(reset screen).each do |style|
-  get "/#{style}.css" do
-    content_type :css, :charset => 'utf-8'
-    path = "public/scss/#{style}.scss"
-    last_modified File.mtime(path)
-    scss File.read(path)
-  end
+get "/screen.css" do
+  content_type :css, :charset => 'utf-8'
+  path = "public/scss/screen.scss"
+  last_modified File.mtime(path)
+  scss File.read(path)
 end
 
 get '/' do
