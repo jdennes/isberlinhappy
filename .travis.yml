@@ -1,9 +1,12 @@
 language: ruby
 rvm:
-  - 2.1
-  - 2.0.0
-  - 1.9.3
-  - 1.9.2
-  - jruby-18mode
-  - jruby-19mode
-  - jruby-head
+- 2.1
+- 2.0.0
+deploy:
+  provider: heroku
+  api_key:
+    secure: VdM7Phmni7L27niI/gG8MUX8gsCuRZmdU0UauJ1bcpqfzVX+tnSLYuW2TstOQAGzlZ4aaYtT9uocVk15shDKrlMYngITD76eKpQyTLP+mjt/t+dlQRM6oI4DRr5xM15D7qR6+bFxiNeSxA9s/oPYtT8gkC9Oc8fYsFniDqspxeQ=
+  app: isberlinhappytoday
+  on:
+    branch: master
+    rvm: 2.0.0
