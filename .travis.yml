@@ -5,7 +5,7 @@ rvm:
 deploy:
   provider: heroku
   api_key:
-    secure: VdM7Phmni7L27niI/gG8MUX8gsCuRZmdU0UauJ1bcpqfzVX+tnSLYuW2TstOQAGzlZ4aaYtT9uocVk15shDKrlMYngITD76eKpQyTLP+mjt/t+dlQRM6oI4DRr5xM15D7qR6+bFxiNeSxA9s/oPYtT8gkC9Oc8fYsFniDqspxeQ=
+    secure: Mqmb+bIj3BFSqLJTVjDTMNkNzsNPz3jZw2BOOSfv0+2XiVpW4CLpOdPqdZLKjBEp2nnP+peQok5M1gdvg7vY5s32BWed2UjRjdRBfDhgH/NyvksnyHmGtzkA2eh7zXPQ8WXY3QQfkyY9lySka4/wuX/DODUA0sVuondvP3Fchsg=
   app: isberlinhappytoday
   on:
     branch: master
