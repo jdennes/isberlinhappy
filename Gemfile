@@ -17,3 +17,5 @@ group :development do
   gem 'fakeredis'
   gem 'webmock'
 end
+
+ruby "2.0.0"
