@@ -50,13 +50,13 @@ describe DecisionMaker do
 
     describe '#temp_nice?' do
       it 'tells that the temperature is nice' do
-        expect(dm.temp_nice?).to be_true
+        expect(dm.temp_nice?).to be true
       end
     end
 
     describe '#conditions_nice?' do
       it 'tells that the conditions are nice' do
-        expect(dm.conditions_nice?).to be_true
+        expect(dm.conditions_nice?).to be true
       end
     end
 
@@ -80,13 +80,13 @@ describe DecisionMaker do
 
     describe '#temp_nice?' do
       it 'tells that the temperature is nice' do
-        expect(dm.temp_nice?).to be_false
+        expect(dm.temp_nice?).to be false
       end
     end
 
     describe '#conditions_nice?' do
       it 'tells that the conditions are nice' do
-        expect(dm.conditions_nice?).to be_true
+        expect(dm.conditions_nice?).to be true
       end
     end
 
@@ -110,13 +110,13 @@ describe DecisionMaker do
 
     describe '#temp_nice?' do
       it 'tells that the temperature is nice' do
-        expect(dm.temp_nice?).to be_true
+        expect(dm.temp_nice?).to be true
       end
     end
 
     describe '#conditions_nice?' do
       it 'tells that the conditions are nice' do
-        expect(dm.conditions_nice?).to be_true
+        expect(dm.conditions_nice?).to be true
       end
     end
 
@@ -140,13 +140,13 @@ describe DecisionMaker do
 
     describe '#temp_nice?' do
       it 'tells that the temperature is nice' do
-        expect(dm.temp_nice?).to be_true
+        expect(dm.temp_nice?).to be true
       end
     end
 
     describe '#conditions_nice?' do
       it 'tells that the conditions are not nice' do
-        expect(dm.conditions_nice?).to be_false
+        expect(dm.conditions_nice?).to be false
       end
     end
 
@@ -170,13 +170,13 @@ describe DecisionMaker do
 
     describe '#temp_nice?' do
       it 'tells that the temperature is not nice' do
-        expect(dm.temp_nice?).to be_false
+        expect(dm.temp_nice?).to be false
       end
     end
 
     describe '#conditions_nice?' do
       it 'tells that the conditions are nice' do
-        expect(dm.conditions_nice?).to be_true
+        expect(dm.conditions_nice?).to be true
       end
     end
 
@@ -200,13 +200,13 @@ describe DecisionMaker do
 
     describe '#temp_nice?' do
       it 'tells that the temperature is not nice' do
-        expect(dm.temp_nice?).to be_false
+        expect(dm.temp_nice?).to be false
       end
     end
 
     describe '#conditions_nice?' do
       it 'tells that the conditions are not nice' do
-        expect(dm.conditions_nice?).to be_false
+        expect(dm.conditions_nice?).to be false
       end
     end
 
