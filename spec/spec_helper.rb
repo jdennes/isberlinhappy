@@ -5,6 +5,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   SimpleCov::Formatter::HTMLFormatter,
   Coveralls::SimpleCov::Formatter
 ]
+SimpleCov.add_filter "spec"
 SimpleCov.start
 
 $:.unshift File.expand_path('..', __FILE__)
@@ -20,6 +21,7 @@ require 'fakeredis/rspec'
 require 'webmock/rspec'
 
 RSpec.configure do |conf|
+  conf.color = true
   conf.include Rack::Test::Methods
 end
 
