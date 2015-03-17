@@ -1,12 +1,10 @@
 begin
   require "rspec/core/rake_task"
+  desc "Run specs"
   RSpec::Core::RakeTask.new(:spec)
 rescue LoadError
   # Avoid errors when development and test dependencies aren't present
 end
-
-desc "Run specs"
-RSpec::Core::RakeTask.new(:spec)
 
 desc "Start app for development"
 task :start do
